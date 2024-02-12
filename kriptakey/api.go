@@ -171,6 +171,26 @@ SG_FAULTCODE_T kk_nativesdk_fileVerifyHMAC(OpaqueConnectionHandlerPtr const conn
 	char const* sessionToken, char const* keyId,
 	char const* inputFilePath, uint8_t const* tagVec, size_t tagSize,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
+SG_FAULTCODE_T kk_nativesdk_e2eeReencryptFromSessionKeyToPermanentKey(OpaqueConnectionHandlerPtr const connectionData,
+	uint32_t slotId, char const* sessionToken, uint8_t const* serializedSourceRequest, size_t serializedSourceRequestSize,
+    uint8_t const* serializedDestinationRequest, size_t serializedDestinationRequestSize, OpaqueOutputPtr allocatedPtr,
+    AssignerCallback callback);
+SG_FAULTCODE_T kk_nativesdk_e2eeCompare(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+    char const* sessionToken, uint8_t const* serializedSourceRequest, size_t serializedSourceRequestSize,
+    uint8_t const* serializedDestinationRequest, size_t serializedDestinationRequestSize, OpaqueOutputPtr allocatedPtr,
+    AssignerCallback callback);
+SG_FAULTCODE_T kk_nativesdk_e2eeReencryptFromPermanentKeyToClientKey(OpaqueConnectionHandlerPtr const connectionData,
+	uint32_t slotId, char const* sessionToken, uint8_t const* serializedSourceRequest, size_t serializedSourceRequestSize,
+    uint8_t const* serializedDestinationRequest, size_t serializedDestinationRequestSize, OpaqueOutputPtr allocatedPtr,
+    AssignerCallback callback);
+SG_FAULTCODE_T kk_nativesdk_e2eeDecryptFromSessionKey(OpaqueConnectionHandlerPtr const connectionData,
+    uint32_t slotId, char const* sessionToken, char const* wrappingKeyId, char const* wrappedPrivateKey,
+    char const* sessionKeyAlgo, char const* macAlgo, char const* oaepLabel, char const* metadata,
+    char const** ciphertextVec, size_t ciphertextVecSize, OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
+SG_FAULTCODE_T kk_nativesdk_e2eeEncryptToClientKey(OpaqueConnectionHandlerPtr const connectionData,
+    uint32_t slotId, char const* sessionToken, uint8_t const* serializedSourceRequest,
+    size_t serializedSourceRequestSize, uint8_t const* serializedDestinationRequest,
+    size_t serializedDestinationRequestSize, OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
 char const* kk_nativesdk_getVersion();
 */
 import "C"
@@ -179,9 +199,9 @@ import (
 	"runtime"
 	"unsafe"
 
-	"google.golang.org/protobuf/proto"
 	kkreq "github.com/kriptakey/kk-go-sdk/kriptakey/request"
 	kkresp "github.com/kriptakey/kk-go-sdk/kriptakey/response"
+	"google.golang.org/protobuf/proto"
 )
 
 //export kk_gosdk_assign
@@ -212,7 +232,7 @@ func GetSDKVersion() string {
 	return C.GoString(c_version)
 }
 
-//  NOTE: `caCertPath` parameter is unused and will be ignored
+// NOTE: `caCertPath` parameter is unused and will be ignored
 func InitializeConnection(host string, port uint16, clientCertificatePath string, privateKeyPath string, caCertPath string) (*ConnectionHandler, error) {
 	instance := &ConnectionHandler{
 		handler: new(C.OpaqueConnectionHandlerPtr),
@@ -237,7 +257,7 @@ func InitializeConnection(host string, port uint16, clientCertificatePath string
 	return instance, nil
 }
 
-//  NOTE: `caCertBuffer` parameter is unused and will be ignored
+// NOTE: `caCertBuffer` parameter is unused and will be ignored
 func InitializeConnectionUsingPEMBuffer(host string, port uint16, clientCertificateBuffer string, privateKeyBuffer string, caCertBuffer string) (*ConnectionHandler, error) {
 	instance := &ConnectionHandler{
 		handler: new(C.OpaqueConnectionHandlerPtr),
@@ -1274,5 +1294,148 @@ func (x *ConnectionHandler) ExternalVerifyDigest(slotId uint32, sessionToken str
 
 	instance := &kkresp.APIResponse_ExternalVerify{}
 	err := proto.Unmarshal(array, instance)
+	return instance, err
+}
+
+func (x *ConnectionHandler) E2EEReencryptFromSessionKeyToPermanentKey(slotId uint32, sessionToken string, e2eeSourceRequest *kkreq.APIRequest_E2EEReencryptFromSessionKeyToPermanentKeySource, e2eeDestinationRequest *kkreq.APIRequest_E2EEReencryptFromSessionKeyToPermanentKeyDestination) (*kkresp.APIResponse_E2EEReencryptFromSessionKeyToPermanentKey, error) {
+	array := []byte{}
+	allocPtr := unsafe.Pointer(&array)
+
+	c_sessionToken := C.CString(sessionToken)
+	defer C.free(unsafe.Pointer(c_sessionToken))
+
+	sourceReq, err := proto.Marshal(e2eeSourceRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	destinationReq, err := proto.Marshal(e2eeDestinationRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	ret := C.kk_nativesdk_e2eeReencryptFromSessionKeyToPermanentKey(*x.handler, C.uint(slotId), c_sessionToken, (*C.uchar)(unsafe.Pointer(&sourceReq[0])), C.ulong(len(sourceReq)), (*C.uchar)(unsafe.Pointer(&destinationReq[0])), C.ulong(len(destinationReq)), C.OpaqueOutputPtr(allocPtr), C.AssignerCallback(C.kk_gosdk_assign))
+	if ret != 1 {
+		return nil, newFaultCode(uint(ret))
+	}
+
+	instance := &kkresp.APIResponse_E2EEReencryptFromSessionKeyToPermanentKey{}
+	err = proto.Unmarshal(array, instance)
+	return instance, err
+}
+
+func (x *ConnectionHandler) E2EECompare(slotId uint32, sessionToken string, e2eeSourceRequest *kkreq.APIRequest_E2EEReencryptFromSessionKeyToPermanentKeySource, e2eeCompareWithRequest *kkreq.APIRequest_E2EECompareWith) (*kkresp.APIResponse_E2EECompare, error) {
+	array := []byte{}
+	allocPtr := unsafe.Pointer(&array)
+
+	c_sessionToken := C.CString(sessionToken)
+	defer C.free(unsafe.Pointer(c_sessionToken))
+
+	sourceReq, err := proto.Marshal(e2eeSourceRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	compareWithReq, err := proto.Marshal(e2eeCompareWithRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	ret := C.kk_nativesdk_e2eeCompare(*x.handler, C.uint(slotId), c_sessionToken, (*C.uchar)(unsafe.Pointer(&sourceReq[0])), C.ulong(len(sourceReq)), (*C.uchar)(unsafe.Pointer(&compareWithReq[0])), C.ulong(len(compareWithReq)), C.OpaqueOutputPtr(allocPtr), C.AssignerCallback(C.kk_gosdk_assign))
+	if ret != 1 {
+		return nil, newFaultCode(uint(ret))
+	}
+
+	instance := &kkresp.APIResponse_E2EECompare{}
+	err = proto.Unmarshal(array, instance)
+	return instance, err
+}
+
+func (x *ConnectionHandler) E2EEReencryptFromPermanentKeyToClientKey(slotId uint32, sessionToken string, e2eeSourceRequest *kkreq.APIRequest_E2EEReencryptFromPermanentKeyToClientKeySource, e2eeDestinationRequest *kkreq.APIRequest_E2EEReencryptFromPermanentKeyToSessionKeyDestination) (*kkresp.APIResponse_E2EEReencryptFromPermanentKeyToClientKey, error) {
+	array := []byte{}
+	allocPtr := unsafe.Pointer(&array)
+
+	c_sessionToken := C.CString(sessionToken)
+	defer C.free(unsafe.Pointer(c_sessionToken))
+
+	sourceReq, err := proto.Marshal(e2eeSourceRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	destinationReq, err := proto.Marshal(e2eeDestinationRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	ret := C.kk_nativesdk_e2eeReencryptFromPermanentKeyToClientKey(*x.handler, C.uint(slotId), c_sessionToken, (*C.uchar)(unsafe.Pointer(&sourceReq[0])), C.ulong(len(sourceReq)), (*C.uchar)(unsafe.Pointer(&destinationReq[0])), C.ulong(len(destinationReq)), C.OpaqueOutputPtr(allocPtr), C.AssignerCallback(C.kk_gosdk_assign))
+	if ret != 1 {
+		return nil, newFaultCode(uint(ret))
+	}
+
+	instance := &kkresp.APIResponse_E2EEReencryptFromPermanentKeyToClientKey{}
+	err = proto.Unmarshal(array, instance)
+	return instance, err
+}
+
+func (x *ConnectionHandler) E2EEDecryptFromSessionKey(slotId uint32, sessionToken string, wrappingKeyId string, wrappedPrivateKey string, sessionKeyAlgo string, macAlgo string, oaepLabel string, metadata string, ciphertext []string) (*kkresp.APIResponse_E2EEDecryptFromSessionKey, error) {
+	array := []byte{}
+	allocPtr := unsafe.Pointer(&array)
+
+	c_sessionToken := C.CString(sessionToken)
+	defer C.free(unsafe.Pointer(c_sessionToken))
+	c_wrappingKeyId := C.CString(wrappingKeyId)
+	defer C.free(unsafe.Pointer(c_wrappingKeyId))
+	c_wrappedPrivateKey := C.CString(wrappedPrivateKey)
+	defer C.free(unsafe.Pointer(c_wrappedPrivateKey))
+	c_sessionKeyAlgo := C.CString(sessionKeyAlgo)
+	defer C.free(unsafe.Pointer(c_sessionKeyAlgo))
+	c_macAlgo := C.CString(macAlgo)
+	defer C.free(unsafe.Pointer(c_macAlgo))
+	c_oaepLabel := C.CString(oaepLabel)
+	defer C.free(unsafe.Pointer(c_oaepLabel))
+	c_metadata := C.CString(metadata)
+	defer C.free(unsafe.Pointer(c_metadata))
+
+	c_ciphertext := make([]*C.char, len(ciphertext))
+	for i, el := range ciphertext {
+		c_ciphertext[i] = C.CString(el)
+		defer C.free(unsafe.Pointer(c_ciphertext[i]))
+	}
+
+	ret := C.kk_nativesdk_e2eeDecryptFromSessionKey(*x.handler, C.uint(slotId), c_sessionToken, c_wrappingKeyId, c_wrappedPrivateKey, c_sessionKeyAlgo, c_macAlgo, c_oaepLabel, c_metadata, (**C.char)(unsafe.Pointer(&c_ciphertext[0])), C.ulong(len(c_ciphertext)), C.OpaqueOutputPtr(allocPtr), C.AssignerCallback(C.kk_gosdk_assign))
+	if ret != 1 {
+		return nil, newFaultCode(uint(ret))
+	}
+
+	instance := &kkresp.APIResponse_E2EEDecryptFromSessionKey{}
+	err := proto.Unmarshal(array, instance)
+	return instance, err
+}
+
+func (x *ConnectionHandler) E2EEEncryptToClientKey(slotId uint32, sessionToken string, e2eeSourceRequest *kkreq.APIRequest_E2EEEncryptToClientKeySource, e2eeDestinationRequest *kkreq.APIRequest_E2EEEncryptToClientKeyDestination) (*kkresp.APIResponse_E2EEReencryptFromPermanentKeyToClientKey, error) {
+	array := []byte{}
+	allocPtr := unsafe.Pointer(&array)
+
+	c_sessionToken := C.CString(sessionToken)
+	defer C.free(unsafe.Pointer(c_sessionToken))
+
+	sourceReq, err := proto.Marshal(e2eeSourceRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	destinationReq, err := proto.Marshal(e2eeDestinationRequest)
+	if err != nil {
+		return nil, err
+	}
+
+	ret := C.kk_nativesdk_e2eeEncryptToClientKey(*x.handler, C.uint(slotId), c_sessionToken, (*C.uchar)(unsafe.Pointer(&sourceReq[0])), C.ulong(len(sourceReq)), (*C.uchar)(unsafe.Pointer(&destinationReq[0])), C.ulong(len(destinationReq)), C.OpaqueOutputPtr(allocPtr), C.AssignerCallback(C.kk_gosdk_assign))
+	if ret != 1 {
+		return nil, newFaultCode(uint(ret))
+	}
+
+	instance := &kkresp.APIResponse_E2EEReencryptFromPermanentKeyToClientKey{}
+	err = proto.Unmarshal(array, instance)
 	return instance, err
 }

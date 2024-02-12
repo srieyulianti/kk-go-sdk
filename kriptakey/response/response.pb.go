@@ -1898,7 +1898,7 @@ func (x *APIResponse_ExternalVerify) GetVerified() bool {
 	return false
 }
 
-type APIResponse_E2EESingleTranslate struct {
+type APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1908,8 +1908,8 @@ type APIResponse_E2EESingleTranslate struct {
 	Iv         string `protobuf:"bytes,3,opt,name=iv,proto3" json:"iv,omitempty"`
 }
 
-func (x *APIResponse_E2EESingleTranslate) Reset() {
-	*x = APIResponse_E2EESingleTranslate{}
+func (x *APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey) Reset() {
+	*x = APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_response_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1917,13 +1917,13 @@ func (x *APIResponse_E2EESingleTranslate) Reset() {
 	}
 }
 
-func (x *APIResponse_E2EESingleTranslate) String() string {
+func (x *APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*APIResponse_E2EESingleTranslate) ProtoMessage() {}
+func (*APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey) ProtoMessage() {}
 
-func (x *APIResponse_E2EESingleTranslate) ProtoReflect() protoreflect.Message {
+func (x *APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey) ProtoReflect() protoreflect.Message {
 	mi := &file_response_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1935,26 +1935,26 @@ func (x *APIResponse_E2EESingleTranslate) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use APIResponse_E2EESingleTranslate.ProtoReflect.Descriptor instead.
-func (*APIResponse_E2EESingleTranslate) Descriptor() ([]byte, []int) {
+// Deprecated: Use APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey.ProtoReflect.Descriptor instead.
+func (*APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey) Descriptor() ([]byte, []int) {
 	return file_response_proto_rawDescGZIP(), []int{0, 33}
 }
 
-func (x *APIResponse_E2EESingleTranslate) GetCiphertext() string {
+func (x *APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey) GetCiphertext() string {
 	if x != nil {
 		return x.Ciphertext
 	}
 	return ""
 }
 
-func (x *APIResponse_E2EESingleTranslate) GetMac() string {
+func (x *APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey) GetMac() string {
 	if x != nil {
 		return x.Mac
 	}
 	return ""
 }
 
-func (x *APIResponse_E2EESingleTranslate) GetIv() string {
+func (x *APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey) GetIv() string {
 	if x != nil {
 		return x.Iv
 	}
@@ -2032,16 +2032,17 @@ func (x *APIResponse_E2EETranslate) GetIv() string {
 	return ""
 }
 
-type APIResponse_E2EEMultipleTranslate struct {
+type APIResponse_E2EEReencryptFromSessionKeyToPermanentKey struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Ciphertext []*APIResponse_E2EESingleTranslate `protobuf:"bytes,1,rep,name=ciphertext,proto3" json:"ciphertext,omitempty"`
+	KeyVersion *wrapperspb.UInt32Value                                        `protobuf:"bytes,1,opt,name=keyVersion,proto3" json:"keyVersion,omitempty"`
+	Ciphertext []*APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey `protobuf:"bytes,2,rep,name=ciphertext,proto3" json:"ciphertext,omitempty"`
 }
 
-func (x *APIResponse_E2EEMultipleTranslate) Reset() {
-	*x = APIResponse_E2EEMultipleTranslate{}
+func (x *APIResponse_E2EEReencryptFromSessionKeyToPermanentKey) Reset() {
+	*x = APIResponse_E2EEReencryptFromSessionKeyToPermanentKey{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_response_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2049,13 +2050,13 @@ func (x *APIResponse_E2EEMultipleTranslate) Reset() {
 	}
 }
 
-func (x *APIResponse_E2EEMultipleTranslate) String() string {
+func (x *APIResponse_E2EEReencryptFromSessionKeyToPermanentKey) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*APIResponse_E2EEMultipleTranslate) ProtoMessage() {}
+func (*APIResponse_E2EEReencryptFromSessionKeyToPermanentKey) ProtoMessage() {}
 
-func (x *APIResponse_E2EEMultipleTranslate) ProtoReflect() protoreflect.Message {
+func (x *APIResponse_E2EEReencryptFromSessionKeyToPermanentKey) ProtoReflect() protoreflect.Message {
 	mi := &file_response_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2067,12 +2068,19 @@ func (x *APIResponse_E2EEMultipleTranslate) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use APIResponse_E2EEMultipleTranslate.ProtoReflect.Descriptor instead.
-func (*APIResponse_E2EEMultipleTranslate) Descriptor() ([]byte, []int) {
+// Deprecated: Use APIResponse_E2EEReencryptFromSessionKeyToPermanentKey.ProtoReflect.Descriptor instead.
+func (*APIResponse_E2EEReencryptFromSessionKeyToPermanentKey) Descriptor() ([]byte, []int) {
 	return file_response_proto_rawDescGZIP(), []int{0, 35}
 }
 
-func (x *APIResponse_E2EEMultipleTranslate) GetCiphertext() []*APIResponse_E2EESingleTranslate {
+func (x *APIResponse_E2EEReencryptFromSessionKeyToPermanentKey) GetKeyVersion() *wrapperspb.UInt32Value {
+	if x != nil {
+		return x.KeyVersion
+	}
+	return nil
+}
+
+func (x *APIResponse_E2EEReencryptFromSessionKeyToPermanentKey) GetCiphertext() []*APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey {
 	if x != nil {
 		return x.Ciphertext
 	}
@@ -2131,7 +2139,7 @@ type APIResponse_E2EECompare struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Equal bool `protobuf:"varint,1,opt,name=equal,proto3" json:"equal,omitempty"`
+	Equal []*APIResponse_E2EESingleCompare `protobuf:"bytes,1,rep,name=equal,proto3" json:"equal,omitempty"`
 }
 
 func (x *APIResponse_E2EECompare) Reset() {
@@ -2166,23 +2174,23 @@ func (*APIResponse_E2EECompare) Descriptor() ([]byte, []int) {
 	return file_response_proto_rawDescGZIP(), []int{0, 37}
 }
 
-func (x *APIResponse_E2EECompare) GetEqual() bool {
+func (x *APIResponse_E2EECompare) GetEqual() []*APIResponse_E2EESingleCompare {
 	if x != nil {
 		return x.Equal
 	}
-	return false
+	return nil
 }
 
-type APIResponse_E2EEMultipleCompare struct {
+type APIResponse_E2EEReencryptFromPermanentKeyToClientKey struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Equal []*APIResponse_E2EESingleCompare `protobuf:"bytes,1,rep,name=equal,proto3" json:"equal,omitempty"`
+	Ciphertext []*APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey `protobuf:"bytes,1,rep,name=ciphertext,proto3" json:"ciphertext,omitempty"`
 }
 
-func (x *APIResponse_E2EEMultipleCompare) Reset() {
-	*x = APIResponse_E2EEMultipleCompare{}
+func (x *APIResponse_E2EEReencryptFromPermanentKeyToClientKey) Reset() {
+	*x = APIResponse_E2EEReencryptFromPermanentKeyToClientKey{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_response_proto_msgTypes[39]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2190,13 +2198,13 @@ func (x *APIResponse_E2EEMultipleCompare) Reset() {
 	}
 }
 
-func (x *APIResponse_E2EEMultipleCompare) String() string {
+func (x *APIResponse_E2EEReencryptFromPermanentKeyToClientKey) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*APIResponse_E2EEMultipleCompare) ProtoMessage() {}
+func (*APIResponse_E2EEReencryptFromPermanentKeyToClientKey) ProtoMessage() {}
 
-func (x *APIResponse_E2EEMultipleCompare) ProtoReflect() protoreflect.Message {
+func (x *APIResponse_E2EEReencryptFromPermanentKeyToClientKey) ProtoReflect() protoreflect.Message {
 	mi := &file_response_proto_msgTypes[39]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -2208,14 +2216,61 @@ func (x *APIResponse_E2EEMultipleCompare) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use APIResponse_E2EEMultipleCompare.ProtoReflect.Descriptor instead.
-func (*APIResponse_E2EEMultipleCompare) Descriptor() ([]byte, []int) {
+// Deprecated: Use APIResponse_E2EEReencryptFromPermanentKeyToClientKey.ProtoReflect.Descriptor instead.
+func (*APIResponse_E2EEReencryptFromPermanentKeyToClientKey) Descriptor() ([]byte, []int) {
 	return file_response_proto_rawDescGZIP(), []int{0, 38}
 }
 
-func (x *APIResponse_E2EEMultipleCompare) GetEqual() []*APIResponse_E2EESingleCompare {
+func (x *APIResponse_E2EEReencryptFromPermanentKeyToClientKey) GetCiphertext() []*APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey {
 	if x != nil {
-		return x.Equal
+		return x.Ciphertext
+	}
+	return nil
+}
+
+type APIResponse_E2EEDecryptFromSessionKey struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Plaintext []string `protobuf:"bytes,1,rep,name=plaintext,proto3" json:"plaintext,omitempty"`
+}
+
+func (x *APIResponse_E2EEDecryptFromSessionKey) Reset() {
+	*x = APIResponse_E2EEDecryptFromSessionKey{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_response_proto_msgTypes[40]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *APIResponse_E2EEDecryptFromSessionKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*APIResponse_E2EEDecryptFromSessionKey) ProtoMessage() {}
+
+func (x *APIResponse_E2EEDecryptFromSessionKey) ProtoReflect() protoreflect.Message {
+	mi := &file_response_proto_msgTypes[40]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use APIResponse_E2EEDecryptFromSessionKey.ProtoReflect.Descriptor instead.
+func (*APIResponse_E2EEDecryptFromSessionKey) Descriptor() ([]byte, []int) {
+	return file_response_proto_rawDescGZIP(), []int{0, 39}
+}
+
+func (x *APIResponse_E2EEDecryptFromSessionKey) GetPlaintext() []string {
+	if x != nil {
+		return x.Plaintext
 	}
 	return nil
 }
@@ -2233,7 +2288,7 @@ type APIResponse_FileEncrypt struct {
 func (x *APIResponse_FileEncrypt) Reset() {
 	*x = APIResponse_FileEncrypt{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_response_proto_msgTypes[40]
+		mi := &file_response_proto_msgTypes[41]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2246,7 +2301,7 @@ func (x *APIResponse_FileEncrypt) String() string {
 func (*APIResponse_FileEncrypt) ProtoMessage() {}
 
 func (x *APIResponse_FileEncrypt) ProtoReflect() protoreflect.Message {
-	mi := &file_response_proto_msgTypes[40]
+	mi := &file_response_proto_msgTypes[41]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2259,7 +2314,7 @@ func (x *APIResponse_FileEncrypt) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use APIResponse_FileEncrypt.ProtoReflect.Descriptor instead.
 func (*APIResponse_FileEncrypt) Descriptor() ([]byte, []int) {
-	return file_response_proto_rawDescGZIP(), []int{0, 39}
+	return file_response_proto_rawDescGZIP(), []int{0, 40}
 }
 
 func (x *APIResponse_FileEncrypt) GetKeyVersion() uint32 {
@@ -2294,7 +2349,7 @@ type APIResponse_FileGenerateHMAC struct {
 func (x *APIResponse_FileGenerateHMAC) Reset() {
 	*x = APIResponse_FileGenerateHMAC{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_response_proto_msgTypes[41]
+		mi := &file_response_proto_msgTypes[42]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2307,7 +2362,7 @@ func (x *APIResponse_FileGenerateHMAC) String() string {
 func (*APIResponse_FileGenerateHMAC) ProtoMessage() {}
 
 func (x *APIResponse_FileGenerateHMAC) ProtoReflect() protoreflect.Message {
-	mi := &file_response_proto_msgTypes[41]
+	mi := &file_response_proto_msgTypes[42]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2320,7 +2375,7 @@ func (x *APIResponse_FileGenerateHMAC) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use APIResponse_FileGenerateHMAC.ProtoReflect.Descriptor instead.
 func (*APIResponse_FileGenerateHMAC) Descriptor() ([]byte, []int) {
-	return file_response_proto_rawDescGZIP(), []int{0, 40}
+	return file_response_proto_rawDescGZIP(), []int{0, 41}
 }
 
 func (x *APIResponse_FileGenerateHMAC) GetTag() []byte {
@@ -2341,7 +2396,7 @@ type APIResponse_FileVerifyHMAC struct {
 func (x *APIResponse_FileVerifyHMAC) Reset() {
 	*x = APIResponse_FileVerifyHMAC{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_response_proto_msgTypes[42]
+		mi := &file_response_proto_msgTypes[43]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2354,7 +2409,7 @@ func (x *APIResponse_FileVerifyHMAC) String() string {
 func (*APIResponse_FileVerifyHMAC) ProtoMessage() {}
 
 func (x *APIResponse_FileVerifyHMAC) ProtoReflect() protoreflect.Message {
-	mi := &file_response_proto_msgTypes[42]
+	mi := &file_response_proto_msgTypes[43]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2367,7 +2422,7 @@ func (x *APIResponse_FileVerifyHMAC) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use APIResponse_FileVerifyHMAC.ProtoReflect.Descriptor instead.
 func (*APIResponse_FileVerifyHMAC) Descriptor() ([]byte, []int) {
-	return file_response_proto_rawDescGZIP(), []int{0, 41}
+	return file_response_proto_rawDescGZIP(), []int{0, 42}
 }
 
 func (x *APIResponse_FileVerifyHMAC) GetVerified() bool {
@@ -2384,7 +2439,7 @@ var file_response_proto_rawDesc = []byte{
 	0x12, 0x11, 0x6b, 0x6b, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,
 	0x75, 0x72, 0x65, 0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x62, 0x75, 0x66, 0x2f, 0x77, 0x72, 0x61, 0x70, 0x70, 0x65, 0x72, 0x73, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x22, 0x9a, 0x21, 0x0a, 0x0b, 0x41, 0x50, 0x49, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6f, 0x74, 0x6f, 0x22, 0xd0, 0x23, 0x0a, 0x0b, 0x41, 0x50, 0x49, 0x52, 0x65, 0x73, 0x70, 0x6f,
 	0x6e, 0x73, 0x65, 0x1a, 0xc2, 0x01, 0x0a, 0x12, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x49,
 	0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x22, 0x0a, 0x0c, 0x73, 0x65,
 	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x54, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
@@ -2609,52 +2664,72 @@ var file_response_proto_rawDesc = []byte{
 	0x61, 0x74, 0x75, 0x72, 0x65, 0x1a, 0x2c, 0x0a, 0x0e, 0x45, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61,
 	0x6c, 0x56, 0x65, 0x72, 0x69, 0x66, 0x79, 0x12, 0x1a, 0x0a, 0x08, 0x76, 0x65, 0x72, 0x69, 0x66,
 	0x69, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x08, 0x76, 0x65, 0x72, 0x69, 0x66,
-	0x69, 0x65, 0x64, 0x1a, 0x57, 0x0a, 0x13, 0x45, 0x32, 0x45, 0x45, 0x53, 0x69, 0x6e, 0x67, 0x6c,
-	0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x63, 0x69,
-	0x70, 0x68, 0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
-	0x63, 0x69, 0x70, 0x68, 0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x61,
-	0x63, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x61, 0x63, 0x12, 0x0e, 0x0a, 0x02,
-	0x69, 0x76, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x76, 0x1a, 0x71, 0x0a, 0x0d,
-	0x45, 0x32, 0x45, 0x45, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x65, 0x12, 0x1e, 0x0a,
-	0x0a, 0x6b, 0x65, 0x79, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x0d, 0x52, 0x0a, 0x6b, 0x65, 0x79, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x1e, 0x0a,
-	0x0a, 0x63, 0x69, 0x70, 0x68, 0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x0a, 0x63, 0x69, 0x70, 0x68, 0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x12, 0x10, 0x0a,
-	0x03, 0x6d, 0x61, 0x63, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x61, 0x63, 0x12,
-	0x0e, 0x0a, 0x02, 0x69, 0x76, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x76, 0x1a,
-	0x6b, 0x0a, 0x15, 0x45, 0x32, 0x45, 0x45, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x70, 0x6c, 0x65, 0x54,
-	0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x65, 0x12, 0x52, 0x0a, 0x0a, 0x63, 0x69, 0x70, 0x68,
-	0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x32, 0x2e, 0x6b,
-	0x6b, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65,
-	0x2e, 0x41, 0x50, 0x49, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x45, 0x32, 0x45,
-	0x45, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x65,
-	0x52, 0x0a, 0x63, 0x69, 0x70, 0x68, 0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x1a, 0x29, 0x0a, 0x11,
-	0x45, 0x32, 0x45, 0x45, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x72,
-	0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08,
-	0x52, 0x05, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x1a, 0x23, 0x0a, 0x0b, 0x45, 0x32, 0x45, 0x45, 0x43,
-	0x6f, 0x6d, 0x70, 0x61, 0x72, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x1a, 0x5d, 0x0a, 0x13,
-	0x45, 0x32, 0x45, 0x45, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x70, 0x6c, 0x65, 0x43, 0x6f, 0x6d, 0x70,
-	0x61, 0x72, 0x65, 0x12, 0x46, 0x0a, 0x05, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x03,
-	0x28, 0x0b, 0x32, 0x30, 0x2e, 0x6b, 0x6b, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x73, 0x74, 0x72,
-	0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x2e, 0x41, 0x50, 0x49, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x2e, 0x45, 0x32, 0x45, 0x45, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x6f, 0x6d,
-	0x70, 0x61, 0x72, 0x65, 0x52, 0x05, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x1a, 0x4f, 0x0a, 0x0b, 0x46,
-	0x69, 0x6c, 0x65, 0x45, 0x6e, 0x63, 0x72, 0x79, 0x70, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x6b, 0x65,
-	0x79, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0a,
-	0x6b, 0x65, 0x79, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x76,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x02, 0x69, 0x76, 0x12, 0x10, 0x0a, 0x03, 0x74, 0x61,
-	0x67, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x03, 0x74, 0x61, 0x67, 0x1a, 0x24, 0x0a, 0x10,
-	0x46, 0x69, 0x6c, 0x65, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x48, 0x4d, 0x41, 0x43,
-	0x12, 0x10, 0x0a, 0x03, 0x74, 0x61, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x03, 0x74,
-	0x61, 0x67, 0x1a, 0x2c, 0x0a, 0x0e, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x69, 0x66, 0x79,
-	0x48, 0x4d, 0x41, 0x43, 0x12, 0x1a, 0x0a, 0x08, 0x76, 0x65, 0x72, 0x69, 0x66, 0x69, 0x65, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x08, 0x76, 0x65, 0x72, 0x69, 0x66, 0x69, 0x65, 0x64,
-	0x42, 0x46, 0x5a, 0x31, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6b,
-	0x72, 0x69, 0x70, 0x74, 0x61, 0x6b, 0x65, 0x79, 0x2f, 0x6b, 0x6b, 0x2d, 0x67, 0x6f, 0x2d, 0x73,
-	0x64, 0x6b, 0x2f, 0x6b, 0x72, 0x69, 0x70, 0x74, 0x61, 0x6b, 0x65, 0x79, 0x2f, 0x72, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0xaa, 0x02, 0x10, 0x4b, 0x4b, 0x2e, 0x53, 0x64, 0x6b, 0x2e, 0x53,
-	0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x65, 0x64, 0x1a, 0x73, 0x0a, 0x2f, 0x45, 0x32, 0x45, 0x45, 0x53, 0x69, 0x6e, 0x67, 0x6c,
+	0x65, 0x52, 0x65, 0x65, 0x6e, 0x63, 0x72, 0x79, 0x70, 0x74, 0x46, 0x72, 0x6f, 0x6d, 0x53, 0x65,
+	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79, 0x54, 0x6f, 0x50, 0x65, 0x72, 0x6d, 0x61, 0x6e,
+	0x65, 0x6e, 0x74, 0x4b, 0x65, 0x79, 0x12, 0x1e, 0x0a, 0x0a, 0x63, 0x69, 0x70, 0x68, 0x65, 0x72,
+	0x74, 0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63, 0x69, 0x70, 0x68,
+	0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x61, 0x63, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x61, 0x63, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x76, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x76, 0x1a, 0x71, 0x0a, 0x0d, 0x45, 0x32, 0x45, 0x45,
+	0x54, 0x72, 0x61, 0x6e, 0x73, 0x6c, 0x61, 0x74, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x6b, 0x65, 0x79,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0a, 0x6b,
+	0x65, 0x79, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x1e, 0x0a, 0x0a, 0x63, 0x69, 0x70,
+	0x68, 0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x63,
+	0x69, 0x70, 0x68, 0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6d, 0x61, 0x63,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6d, 0x61, 0x63, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x76, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x76, 0x1a, 0xd9, 0x01, 0x0a, 0x29,
+	0x45, 0x32, 0x45, 0x45, 0x52, 0x65, 0x65, 0x6e, 0x63, 0x72, 0x79, 0x70, 0x74, 0x46, 0x72, 0x6f,
+	0x6d, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79, 0x54, 0x6f, 0x50, 0x65, 0x72,
+	0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x4b, 0x65, 0x79, 0x12, 0x3c, 0x0a, 0x0a, 0x6b, 0x65, 0x79,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x55, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x0a, 0x6b, 0x65, 0x79,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x6e, 0x0a, 0x0a, 0x63, 0x69, 0x70, 0x68, 0x65,
+	0x72, 0x74, 0x65, 0x78, 0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x4e, 0x2e, 0x6b, 0x6b,
+	0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x2e,
+	0x41, 0x50, 0x49, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x45, 0x32, 0x45, 0x45,
+	0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x52, 0x65, 0x65, 0x6e, 0x63, 0x72, 0x79, 0x70, 0x74, 0x46,
+	0x72, 0x6f, 0x6d, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79, 0x54, 0x6f, 0x50,
+	0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x4b, 0x65, 0x79, 0x52, 0x0a, 0x63, 0x69, 0x70,
+	0x68, 0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x1a, 0x29, 0x0a, 0x11, 0x45, 0x32, 0x45, 0x45, 0x53,
+	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x72, 0x65, 0x12, 0x14, 0x0a, 0x05,
+	0x65, 0x71, 0x75, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x65, 0x71, 0x75,
+	0x61, 0x6c, 0x1a, 0x55, 0x0a, 0x0b, 0x45, 0x32, 0x45, 0x45, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x72,
+	0x65, 0x12, 0x46, 0x0a, 0x05, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x30, 0x2e, 0x6b, 0x6b, 0x2e, 0x63, 0x6f, 0x72, 0x65, 0x2e, 0x73, 0x74, 0x72, 0x75, 0x63,
+	0x74, 0x75, 0x72, 0x65, 0x2e, 0x41, 0x50, 0x49, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x2e, 0x45, 0x32, 0x45, 0x45, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x43, 0x6f, 0x6d, 0x70, 0x61,
+	0x72, 0x65, 0x52, 0x05, 0x65, 0x71, 0x75, 0x61, 0x6c, 0x1a, 0x9a, 0x01, 0x0a, 0x28, 0x45, 0x32,
+	0x45, 0x45, 0x52, 0x65, 0x65, 0x6e, 0x63, 0x72, 0x79, 0x70, 0x74, 0x46, 0x72, 0x6f, 0x6d, 0x50,
+	0x65, 0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x4b, 0x65, 0x79, 0x54, 0x6f, 0x43, 0x6c, 0x69,
+	0x65, 0x6e, 0x74, 0x4b, 0x65, 0x79, 0x12, 0x6e, 0x0a, 0x0a, 0x63, 0x69, 0x70, 0x68, 0x65, 0x72,
+	0x74, 0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x4e, 0x2e, 0x6b, 0x6b, 0x2e,
+	0x63, 0x6f, 0x72, 0x65, 0x2e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x2e, 0x41,
+	0x50, 0x49, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x45, 0x32, 0x45, 0x45, 0x53,
+	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x52, 0x65, 0x65, 0x6e, 0x63, 0x72, 0x79, 0x70, 0x74, 0x46, 0x72,
+	0x6f, 0x6d, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79, 0x54, 0x6f, 0x50, 0x65,
+	0x72, 0x6d, 0x61, 0x6e, 0x65, 0x6e, 0x74, 0x4b, 0x65, 0x79, 0x52, 0x0a, 0x63, 0x69, 0x70, 0x68,
+	0x65, 0x72, 0x74, 0x65, 0x78, 0x74, 0x1a, 0x39, 0x0a, 0x19, 0x45, 0x32, 0x45, 0x45, 0x44, 0x65,
+	0x63, 0x72, 0x79, 0x70, 0x74, 0x46, 0x72, 0x6f, 0x6d, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
+	0x4b, 0x65, 0x79, 0x12, 0x1c, 0x0a, 0x09, 0x70, 0x6c, 0x61, 0x69, 0x6e, 0x74, 0x65, 0x78, 0x74,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x09, 0x52, 0x09, 0x70, 0x6c, 0x61, 0x69, 0x6e, 0x74, 0x65, 0x78,
+	0x74, 0x1a, 0x4f, 0x0a, 0x0b, 0x46, 0x69, 0x6c, 0x65, 0x45, 0x6e, 0x63, 0x72, 0x79, 0x70, 0x74,
+	0x12, 0x1e, 0x0a, 0x0a, 0x6b, 0x65, 0x79, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0d, 0x52, 0x0a, 0x6b, 0x65, 0x79, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x76, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x02, 0x69, 0x76,
+	0x12, 0x10, 0x0a, 0x03, 0x74, 0x61, 0x67, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x03, 0x74,
+	0x61, 0x67, 0x1a, 0x24, 0x0a, 0x10, 0x46, 0x69, 0x6c, 0x65, 0x47, 0x65, 0x6e, 0x65, 0x72, 0x61,
+	0x74, 0x65, 0x48, 0x4d, 0x41, 0x43, 0x12, 0x10, 0x0a, 0x03, 0x74, 0x61, 0x67, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0c, 0x52, 0x03, 0x74, 0x61, 0x67, 0x1a, 0x2c, 0x0a, 0x0e, 0x46, 0x69, 0x6c, 0x65,
+	0x56, 0x65, 0x72, 0x69, 0x66, 0x79, 0x48, 0x4d, 0x41, 0x43, 0x12, 0x1a, 0x0a, 0x08, 0x76, 0x65,
+	0x72, 0x69, 0x66, 0x69, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x08, 0x76, 0x65,
+	0x72, 0x69, 0x66, 0x69, 0x65, 0x64, 0x42, 0x46, 0x5a, 0x31, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6b, 0x72, 0x69, 0x70, 0x74, 0x61, 0x6b, 0x65, 0x79, 0x2f, 0x6b,
+	0x6b, 0x2d, 0x67, 0x6f, 0x2d, 0x73, 0x64, 0x6b, 0x2f, 0x6b, 0x72, 0x69, 0x70, 0x74, 0x61, 0x6b,
+	0x65, 0x79, 0x2f, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0xaa, 0x02, 0x10, 0x4b, 0x4b,
+	0x2e, 0x53, 0x64, 0x6b, 0x2e, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2669,87 +2744,90 @@ func file_response_proto_rawDescGZIP() []byte {
 	return file_response_proto_rawDescData
 }
 
-var file_response_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
+var file_response_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
 var file_response_proto_goTypes = []interface{}{
-	(*APIResponse)(nil),                       // 0: kk.core.structure.APIResponse
-	(*APIResponse_SessionInformation)(nil),    // 1: kk.core.structure.APIResponse.SessionInformation
-	(*APIResponse_Seal)(nil),                  // 2: kk.core.structure.APIResponse.Seal
-	(*APIResponse_Unseal)(nil),                // 3: kk.core.structure.APIResponse.Unseal
-	(*APIResponse_SingleEncrypt)(nil),         // 4: kk.core.structure.APIResponse.SingleEncrypt
-	(*APIResponse_Encrypt)(nil),               // 5: kk.core.structure.APIResponse.Encrypt
-	(*APIResponse_Decrypt)(nil),               // 6: kk.core.structure.APIResponse.Decrypt
-	(*APIResponse_Reencrypt)(nil),             // 7: kk.core.structure.APIResponse.Reencrypt
-	(*APIResponse_Sign)(nil),                  // 8: kk.core.structure.APIResponse.Sign
-	(*APIResponse_Verify)(nil),                // 9: kk.core.structure.APIResponse.Verify
-	(*APIResponse_GenerateKey)(nil),           // 10: kk.core.structure.APIResponse.GenerateKey
-	(*APIResponse_GenerateKeypair)(nil),       // 11: kk.core.structure.APIResponse.GenerateKeypair
-	(*APIResponse_RandomGenerator)(nil),       // 12: kk.core.structure.APIResponse.RandomGenerator
-	(*APIResponse_GetSecret)(nil),             // 13: kk.core.structure.APIResponse.GetSecret
-	(*APIResponse_SingleGenerateMAC)(nil),     // 14: kk.core.structure.APIResponse.SingleGenerateMAC
-	(*APIResponse_GenerateMAC)(nil),           // 15: kk.core.structure.APIResponse.GenerateMAC
-	(*APIResponse_SingleVerifyMAC)(nil),       // 16: kk.core.structure.APIResponse.SingleVerifyMAC
-	(*APIResponse_VerifyMAC)(nil),             // 17: kk.core.structure.APIResponse.VerifyMAC
-	(*APIResponse_SingleTokenize)(nil),        // 18: kk.core.structure.APIResponse.SingleTokenize
-	(*APIResponse_Tokenize)(nil),              // 19: kk.core.structure.APIResponse.Tokenize
-	(*APIResponse_Detokenize)(nil),            // 20: kk.core.structure.APIResponse.Detokenize
-	(*APIResponse_KeyInfo)(nil),               // 21: kk.core.structure.APIResponse.KeyInfo
-	(*APIResponse_CertificateSign)(nil),       // 22: kk.core.structure.APIResponse.CertificateSign
-	(*APIResponse_CertificateVerify)(nil),     // 23: kk.core.structure.APIResponse.CertificateVerify
-	(*APIResponse_ExternalEncrypt)(nil),       // 24: kk.core.structure.APIResponse.ExternalEncrypt
-	(*APIResponse_ExternalDecrypt)(nil),       // 25: kk.core.structure.APIResponse.ExternalDecrypt
-	(*APIResponse_ExternalGenerateMAC)(nil),   // 26: kk.core.structure.APIResponse.ExternalGenerateMAC
-	(*APIResponse_ExternalVerifyMAC)(nil),     // 27: kk.core.structure.APIResponse.ExternalVerifyMAC
-	(*APIResponse_ExternalSeal)(nil),          // 28: kk.core.structure.APIResponse.ExternalSeal
-	(*APIResponse_ExternalUnseal)(nil),        // 29: kk.core.structure.APIResponse.ExternalUnseal
-	(*APIResponse_ExternalTokenize)(nil),      // 30: kk.core.structure.APIResponse.ExternalTokenize
-	(*APIResponse_ExternalDetokenize)(nil),    // 31: kk.core.structure.APIResponse.ExternalDetokenize
-	(*APIResponse_ExternalSign)(nil),          // 32: kk.core.structure.APIResponse.ExternalSign
-	(*APIResponse_ExternalVerify)(nil),        // 33: kk.core.structure.APIResponse.ExternalVerify
-	(*APIResponse_E2EESingleTranslate)(nil),   // 34: kk.core.structure.APIResponse.E2EESingleTranslate
-	(*APIResponse_E2EETranslate)(nil),         // 35: kk.core.structure.APIResponse.E2EETranslate
-	(*APIResponse_E2EEMultipleTranslate)(nil), // 36: kk.core.structure.APIResponse.E2EEMultipleTranslate
-	(*APIResponse_E2EESingleCompare)(nil),     // 37: kk.core.structure.APIResponse.E2EESingleCompare
-	(*APIResponse_E2EECompare)(nil),           // 38: kk.core.structure.APIResponse.E2EECompare
-	(*APIResponse_E2EEMultipleCompare)(nil),   // 39: kk.core.structure.APIResponse.E2EEMultipleCompare
-	(*APIResponse_FileEncrypt)(nil),           // 40: kk.core.structure.APIResponse.FileEncrypt
-	(*APIResponse_FileGenerateHMAC)(nil),      // 41: kk.core.structure.APIResponse.FileGenerateHMAC
-	(*APIResponse_FileVerifyHMAC)(nil),        // 42: kk.core.structure.APIResponse.FileVerifyHMAC
-	(*wrapperspb.StringValue)(nil),            // 43: google.protobuf.StringValue
-	(*wrapperspb.UInt32Value)(nil),            // 44: google.protobuf.UInt32Value
+	(*APIResponse)(nil),                                                 // 0: kk.core.structure.APIResponse
+	(*APIResponse_SessionInformation)(nil),                              // 1: kk.core.structure.APIResponse.SessionInformation
+	(*APIResponse_Seal)(nil),                                            // 2: kk.core.structure.APIResponse.Seal
+	(*APIResponse_Unseal)(nil),                                          // 3: kk.core.structure.APIResponse.Unseal
+	(*APIResponse_SingleEncrypt)(nil),                                   // 4: kk.core.structure.APIResponse.SingleEncrypt
+	(*APIResponse_Encrypt)(nil),                                         // 5: kk.core.structure.APIResponse.Encrypt
+	(*APIResponse_Decrypt)(nil),                                         // 6: kk.core.structure.APIResponse.Decrypt
+	(*APIResponse_Reencrypt)(nil),                                       // 7: kk.core.structure.APIResponse.Reencrypt
+	(*APIResponse_Sign)(nil),                                            // 8: kk.core.structure.APIResponse.Sign
+	(*APIResponse_Verify)(nil),                                          // 9: kk.core.structure.APIResponse.Verify
+	(*APIResponse_GenerateKey)(nil),                                     // 10: kk.core.structure.APIResponse.GenerateKey
+	(*APIResponse_GenerateKeypair)(nil),                                 // 11: kk.core.structure.APIResponse.GenerateKeypair
+	(*APIResponse_RandomGenerator)(nil),                                 // 12: kk.core.structure.APIResponse.RandomGenerator
+	(*APIResponse_GetSecret)(nil),                                       // 13: kk.core.structure.APIResponse.GetSecret
+	(*APIResponse_SingleGenerateMAC)(nil),                               // 14: kk.core.structure.APIResponse.SingleGenerateMAC
+	(*APIResponse_GenerateMAC)(nil),                                     // 15: kk.core.structure.APIResponse.GenerateMAC
+	(*APIResponse_SingleVerifyMAC)(nil),                                 // 16: kk.core.structure.APIResponse.SingleVerifyMAC
+	(*APIResponse_VerifyMAC)(nil),                                       // 17: kk.core.structure.APIResponse.VerifyMAC
+	(*APIResponse_SingleTokenize)(nil),                                  // 18: kk.core.structure.APIResponse.SingleTokenize
+	(*APIResponse_Tokenize)(nil),                                        // 19: kk.core.structure.APIResponse.Tokenize
+	(*APIResponse_Detokenize)(nil),                                      // 20: kk.core.structure.APIResponse.Detokenize
+	(*APIResponse_KeyInfo)(nil),                                         // 21: kk.core.structure.APIResponse.KeyInfo
+	(*APIResponse_CertificateSign)(nil),                                 // 22: kk.core.structure.APIResponse.CertificateSign
+	(*APIResponse_CertificateVerify)(nil),                               // 23: kk.core.structure.APIResponse.CertificateVerify
+	(*APIResponse_ExternalEncrypt)(nil),                                 // 24: kk.core.structure.APIResponse.ExternalEncrypt
+	(*APIResponse_ExternalDecrypt)(nil),                                 // 25: kk.core.structure.APIResponse.ExternalDecrypt
+	(*APIResponse_ExternalGenerateMAC)(nil),                             // 26: kk.core.structure.APIResponse.ExternalGenerateMAC
+	(*APIResponse_ExternalVerifyMAC)(nil),                               // 27: kk.core.structure.APIResponse.ExternalVerifyMAC
+	(*APIResponse_ExternalSeal)(nil),                                    // 28: kk.core.structure.APIResponse.ExternalSeal
+	(*APIResponse_ExternalUnseal)(nil),                                  // 29: kk.core.structure.APIResponse.ExternalUnseal
+	(*APIResponse_ExternalTokenize)(nil),                                // 30: kk.core.structure.APIResponse.ExternalTokenize
+	(*APIResponse_ExternalDetokenize)(nil),                              // 31: kk.core.structure.APIResponse.ExternalDetokenize
+	(*APIResponse_ExternalSign)(nil),                                    // 32: kk.core.structure.APIResponse.ExternalSign
+	(*APIResponse_ExternalVerify)(nil),                                  // 33: kk.core.structure.APIResponse.ExternalVerify
+	(*APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey)(nil), // 34: kk.core.structure.APIResponse.E2EESingleReencryptFromSessionKeyToPermanentKey
+	(*APIResponse_E2EETranslate)(nil),                                   // 35: kk.core.structure.APIResponse.E2EETranslate
+	(*APIResponse_E2EEReencryptFromSessionKeyToPermanentKey)(nil),       // 36: kk.core.structure.APIResponse.E2EEReencryptFromSessionKeyToPermanentKey
+	(*APIResponse_E2EESingleCompare)(nil),                               // 37: kk.core.structure.APIResponse.E2EESingleCompare
+	(*APIResponse_E2EECompare)(nil),                                     // 38: kk.core.structure.APIResponse.E2EECompare
+	(*APIResponse_E2EEReencryptFromPermanentKeyToClientKey)(nil),        // 39: kk.core.structure.APIResponse.E2EEReencryptFromPermanentKeyToClientKey
+	(*APIResponse_E2EEDecryptFromSessionKey)(nil),                       // 40: kk.core.structure.APIResponse.E2EEDecryptFromSessionKey
+	(*APIResponse_FileEncrypt)(nil),                                     // 41: kk.core.structure.APIResponse.FileEncrypt
+	(*APIResponse_FileGenerateHMAC)(nil),                                // 42: kk.core.structure.APIResponse.FileGenerateHMAC
+	(*APIResponse_FileVerifyHMAC)(nil),                                  // 43: kk.core.structure.APIResponse.FileVerifyHMAC
+	(*wrapperspb.StringValue)(nil),                                      // 44: google.protobuf.StringValue
+	(*wrapperspb.UInt32Value)(nil),                                      // 45: google.protobuf.UInt32Value
 }
 var file_response_proto_depIdxs = []int32{
-	43, // 0: kk.core.structure.APIResponse.SingleEncrypt.mac:type_name -> google.protobuf.StringValue
-	43, // 1: kk.core.structure.APIResponse.SingleEncrypt.iv:type_name -> google.protobuf.StringValue
-	43, // 2: kk.core.structure.APIResponse.SingleEncrypt.wrappedSessionKey:type_name -> google.protobuf.StringValue
+	44, // 0: kk.core.structure.APIResponse.SingleEncrypt.mac:type_name -> google.protobuf.StringValue
+	44, // 1: kk.core.structure.APIResponse.SingleEncrypt.iv:type_name -> google.protobuf.StringValue
+	44, // 2: kk.core.structure.APIResponse.SingleEncrypt.wrappedSessionKey:type_name -> google.protobuf.StringValue
 	4,  // 3: kk.core.structure.APIResponse.Encrypt.ciphertext:type_name -> kk.core.structure.APIResponse.SingleEncrypt
-	44, // 4: kk.core.structure.APIResponse.Encrypt.keyVersion:type_name -> google.protobuf.UInt32Value
+	45, // 4: kk.core.structure.APIResponse.Encrypt.keyVersion:type_name -> google.protobuf.UInt32Value
 	4,  // 5: kk.core.structure.APIResponse.Reencrypt.ciphertext:type_name -> kk.core.structure.APIResponse.SingleEncrypt
-	44, // 6: kk.core.structure.APIResponse.Reencrypt.keyVersion:type_name -> google.protobuf.UInt32Value
-	43, // 7: kk.core.structure.APIResponse.GenerateKey.zipPassword:type_name -> google.protobuf.StringValue
-	43, // 8: kk.core.structure.APIResponse.GenerateKey.wrappedKeyByExternalKey:type_name -> google.protobuf.StringValue
-	43, // 9: kk.core.structure.APIResponse.GenerateKeypair.zipPassword:type_name -> google.protobuf.StringValue
-	43, // 10: kk.core.structure.APIResponse.SingleGenerateMAC.iv:type_name -> google.protobuf.StringValue
+	45, // 6: kk.core.structure.APIResponse.Reencrypt.keyVersion:type_name -> google.protobuf.UInt32Value
+	44, // 7: kk.core.structure.APIResponse.GenerateKey.zipPassword:type_name -> google.protobuf.StringValue
+	44, // 8: kk.core.structure.APIResponse.GenerateKey.wrappedKeyByExternalKey:type_name -> google.protobuf.StringValue
+	44, // 9: kk.core.structure.APIResponse.GenerateKeypair.zipPassword:type_name -> google.protobuf.StringValue
+	44, // 10: kk.core.structure.APIResponse.SingleGenerateMAC.iv:type_name -> google.protobuf.StringValue
 	14, // 11: kk.core.structure.APIResponse.GenerateMAC.mac:type_name -> kk.core.structure.APIResponse.SingleGenerateMAC
 	16, // 12: kk.core.structure.APIResponse.VerifyMAC.verified:type_name -> kk.core.structure.APIResponse.SingleVerifyMAC
 	18, // 13: kk.core.structure.APIResponse.Tokenize.ciphertext:type_name -> kk.core.structure.APIResponse.SingleTokenize
-	43, // 14: kk.core.structure.APIResponse.KeyInfo.publicKey:type_name -> google.protobuf.StringValue
-	43, // 15: kk.core.structure.APIResponse.KeyInfo.certificate:type_name -> google.protobuf.StringValue
-	44, // 16: kk.core.structure.APIResponse.KeyInfo.keyVersion:type_name -> google.protobuf.UInt32Value
-	43, // 17: kk.core.structure.APIResponse.KeyInfo.encodedModulus:type_name -> google.protobuf.StringValue
-	43, // 18: kk.core.structure.APIResponse.KeyInfo.encodedExponent:type_name -> google.protobuf.StringValue
-	43, // 19: kk.core.structure.APIResponse.KeyInfo.encodedECPoint:type_name -> google.protobuf.StringValue
-	43, // 20: kk.core.structure.APIResponse.KeyInfo.encodedECParams:type_name -> google.protobuf.StringValue
-	44, // 21: kk.core.structure.APIResponse.KeyInfo.autoRotateDuration:type_name -> google.protobuf.UInt32Value
+	44, // 14: kk.core.structure.APIResponse.KeyInfo.publicKey:type_name -> google.protobuf.StringValue
+	44, // 15: kk.core.structure.APIResponse.KeyInfo.certificate:type_name -> google.protobuf.StringValue
+	45, // 16: kk.core.structure.APIResponse.KeyInfo.keyVersion:type_name -> google.protobuf.UInt32Value
+	44, // 17: kk.core.structure.APIResponse.KeyInfo.encodedModulus:type_name -> google.protobuf.StringValue
+	44, // 18: kk.core.structure.APIResponse.KeyInfo.encodedExponent:type_name -> google.protobuf.StringValue
+	44, // 19: kk.core.structure.APIResponse.KeyInfo.encodedECPoint:type_name -> google.protobuf.StringValue
+	44, // 20: kk.core.structure.APIResponse.KeyInfo.encodedECParams:type_name -> google.protobuf.StringValue
+	45, // 21: kk.core.structure.APIResponse.KeyInfo.autoRotateDuration:type_name -> google.protobuf.UInt32Value
 	4,  // 22: kk.core.structure.APIResponse.ExternalEncrypt.ciphertext:type_name -> kk.core.structure.APIResponse.SingleEncrypt
-	43, // 23: kk.core.structure.APIResponse.ExternalGenerateMAC.iv:type_name -> google.protobuf.StringValue
+	44, // 23: kk.core.structure.APIResponse.ExternalGenerateMAC.iv:type_name -> google.protobuf.StringValue
 	18, // 24: kk.core.structure.APIResponse.ExternalTokenize.ciphertext:type_name -> kk.core.structure.APIResponse.SingleTokenize
-	34, // 25: kk.core.structure.APIResponse.E2EEMultipleTranslate.ciphertext:type_name -> kk.core.structure.APIResponse.E2EESingleTranslate
-	37, // 26: kk.core.structure.APIResponse.E2EEMultipleCompare.equal:type_name -> kk.core.structure.APIResponse.E2EESingleCompare
-	27, // [27:27] is the sub-list for method output_type
-	27, // [27:27] is the sub-list for method input_type
-	27, // [27:27] is the sub-list for extension type_name
-	27, // [27:27] is the sub-list for extension extendee
-	0,  // [0:27] is the sub-list for field type_name
+	45, // 25: kk.core.structure.APIResponse.E2EEReencryptFromSessionKeyToPermanentKey.keyVersion:type_name -> google.protobuf.UInt32Value
+	34, // 26: kk.core.structure.APIResponse.E2EEReencryptFromSessionKeyToPermanentKey.ciphertext:type_name -> kk.core.structure.APIResponse.E2EESingleReencryptFromSessionKeyToPermanentKey
+	37, // 27: kk.core.structure.APIResponse.E2EECompare.equal:type_name -> kk.core.structure.APIResponse.E2EESingleCompare
+	34, // 28: kk.core.structure.APIResponse.E2EEReencryptFromPermanentKeyToClientKey.ciphertext:type_name -> kk.core.structure.APIResponse.E2EESingleReencryptFromSessionKeyToPermanentKey
+	29, // [29:29] is the sub-list for method output_type
+	29, // [29:29] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_response_proto_init() }
@@ -3167,7 +3245,7 @@ func file_response_proto_init() {
 			}
 		}
 		file_response_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*APIResponse_E2EESingleTranslate); i {
+			switch v := v.(*APIResponse_E2EESingleReencryptFromSessionKeyToPermanentKey); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3191,7 +3269,7 @@ func file_response_proto_init() {
 			}
 		}
 		file_response_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*APIResponse_E2EEMultipleTranslate); i {
+			switch v := v.(*APIResponse_E2EEReencryptFromSessionKeyToPermanentKey); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3227,7 +3305,7 @@ func file_response_proto_init() {
 			}
 		}
 		file_response_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*APIResponse_E2EEMultipleCompare); i {
+			switch v := v.(*APIResponse_E2EEReencryptFromPermanentKeyToClientKey); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3239,7 +3317,7 @@ func file_response_proto_init() {
 			}
 		}
 		file_response_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*APIResponse_FileEncrypt); i {
+			switch v := v.(*APIResponse_E2EEDecryptFromSessionKey); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3251,7 +3329,7 @@ func file_response_proto_init() {
 			}
 		}
 		file_response_proto_msgTypes[41].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*APIResponse_FileGenerateHMAC); i {
+			switch v := v.(*APIResponse_FileEncrypt); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3263,6 +3341,18 @@ func file_response_proto_init() {
 			}
 		}
 		file_response_proto_msgTypes[42].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*APIResponse_FileGenerateHMAC); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_response_proto_msgTypes[43].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*APIResponse_FileVerifyHMAC); i {
 			case 0:
 				return &v.state
@@ -3281,7 +3371,7 @@ func file_response_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_response_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   43,
+			NumMessages:   44,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
