@@ -6,7 +6,7 @@ package kriptakey
 
 #cgo LDFLAGS: -ldl -lkk-core
 
-#define SG_FAULTCODE_T uint32_t
+#define KK_FAULTCODE_T uint32_t
 
 typedef void* OpaqueConnectionHandlerPtr;
 typedef void* OpaqueOutputPtr;
@@ -14,180 +14,180 @@ typedef void* OpaqueOutputPtr;
 typedef size_t (*AssignerCallback)(void*, size_t, void**);
 int32_t kk_gosdk_assign(void*, int32_t, void*);
 
-SG_FAULTCODE_T kk_nativesdk_initializeConnection(char const* host, uint16_t port,
+KK_FAULTCODE_T kk_nativesdk_initializeConnection(char const* host, uint16_t port,
 	char const* clientCertificatePath, char const* privateKeyPath,
 	OpaqueConnectionHandlerPtr* connectionData);
-SG_FAULTCODE_T kk_nativesdk_initializeWithCertificatePEMBuffer(char const* host, uint16_t port,
+KK_FAULTCODE_T kk_nativesdk_initializeWithCertificatePEMBuffer(char const* host, uint16_t port,
 	char const* clientCertificate, char const* privateKey,
 	OpaqueConnectionHandlerPtr* connectionData);
 
 void kk_nativesdk_freeConnection(OpaqueConnectionHandlerPtr connectionData);
 
-SG_FAULTCODE_T kk_nativesdk_login(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_login(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* password, OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_refreshSession(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_refreshSession(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_generateRandomNumber(OpaqueConnectionHandlerPtr const connectionData,
+KK_FAULTCODE_T kk_nativesdk_generateRandomNumber(OpaqueConnectionHandlerPtr const connectionData,
 	uint32_t slotId, char const* sessionToken, uint32_t length,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_generateMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_generateMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId, char const* hashAlgo,
 	char const** dataVec, size_t dataVecSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_verifyMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_verifyMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId, char const* hashAlgo,
 	uint8_t const* serializedRequest, size_t serializedRequestSize,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_encrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_encrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId, _Bool useSessionKeyOptState,
 	_Bool useSessionKey, uint8_t const* serializedRequest,
 	size_t serializedRequestSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_decrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_decrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, uint8_t const* serializedRequest,
 	size_t serializedRequestSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_reencrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_reencrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
     char const* sessionToken, char const* sourceKeyId,
     char const* destinationKeyId, uint8_t const* serializedRequest,
     size_t serializedRequestSize, OpaqueOutputPtr allocatedPtr,
     AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_seal(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_seal(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
     char const* sessionToken, char const* keyId, char const** plaintextVec,
     size_t plaintextVecSize, OpaqueOutputPtr allocatedPtr,
     AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_unseal(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_unseal(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const** ciphertextVec,
 	size_t ciphertextVecSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_tokenize(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_tokenize(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId,
 	uint8_t const* serializedRequest, size_t serializedRequestSize,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_detokenize(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_detokenize(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, uint8_t const* serializedRequest,
 	size_t serializedRequestSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_sign(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_sign(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
     char const* sessionToken, char const* keyId, char const* inputType,
     char const* hashAlgo, char const* signatureScheme, char const* data,
     OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_verify(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_verify(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId, char const* inputType,
 	char const* hashAlgo, char const* signatureScheme, char const* data,
 	char const* signature, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_signCertificate(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_signCertificate(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId,
 	uint32_t validityPeriod, char const* hashAlgo, char const* csr,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_verifyCertificate(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_verifyCertificate(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId,
     char const* certificate, OpaqueOutputPtr allocatedPtr,
     AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_getKeyInfo(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_getKeyInfo(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId, _Bool keyVersionOptState,
 	uint32_t keyVersion, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_getSecret(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_getSecret(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* secretId,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalGenerateKeypair(
+KK_FAULTCODE_T kk_nativesdk_externalGenerateKeypair(
     OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId, char const* sessionToken,
     char const* wrappingMethod, char const* externalPublicKeyOrWrappingKeyId, char const* keyAlgo,
     _Bool keyLengthOptState, uint32_t keyLength, _Bool withCert, OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalGenerateKey(OpaqueConnectionHandlerPtr const connectionData,
+KK_FAULTCODE_T kk_nativesdk_externalGenerateKey(OpaqueConnectionHandlerPtr const connectionData,
 	uint32_t slotId, char const* sessionToken,
 	char const* wrappingMethod, char const* internalWrappingKeyId,
 	char const* externalPublicKey, uint32_t keyLength,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalGenerateMAC(OpaqueConnectionHandlerPtr const connectionData,
+KK_FAULTCODE_T kk_nativesdk_externalGenerateMAC(OpaqueConnectionHandlerPtr const connectionData,
 	uint32_t slotId, char const* sessionToken,
 	char const* wrappingKeyId, char const* wrappedKey,
 	char const* hashAlgo, char const* data,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalVerifyMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalVerifyMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* wrappingKeyId,
 	char const* wrappedKey, char const* hashAlgo, char const* data,
 	char const* mac, char const* iv, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalEncrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalEncrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* wrappingKeyId,
 	char const* wrappedKey, char const* publicKeyOrCert,
 	_Bool useSessionKeyOptState, _Bool useSessionKey,
 	uint8_t const* serializedRequest, size_t serializedRequestSize,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalDecrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalDecrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* wrappingKeyId,
 	char const* wrappedKey, uint8_t const* serializedRequest,
 	size_t serializedRequestSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalSeal(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalSeal(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* wrappingKeyId,
 	char const* wrappedKey, char const* publicKeyOrCert,
 	char const** plaintextVec, size_t plaintextVecSize,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalUnseal(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalUnseal(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* wrappingKeyId,
 	char const* wrappedKey, char const** ciphertextVec,
 	size_t ciphertextSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalTokenize(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalTokenize(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* wrappingKeyId,
 	char const* wrappedKey, uint8_t const* serializedRequest,
 	size_t serializedRequestSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalDetokenize(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalDetokenize(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* wrappingKeyId,
 	char const* wrappedKey, uint8_t const* serializedRequest,
 	size_t serializedRequestSize, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalSign(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalSign(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* wrappingKeyId,
 	char const* wrappedKey, char const* inputType, char const* hashAlgo,
 	char const* data, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_externalVerify(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_externalVerify(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* publicKeyOrCert,
 	char const* inputType, char const* hashAlgo, char const* data,
 	char const* signature, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_fileEncrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_fileEncrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId,
 	char const* plaintextInputFilePath,
 	char const* ciphertextOutputFilePath, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_fileDecrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_fileDecrypt(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId, uint32_t keyVersion,
 	uint8_t const* ivVec, size_t ivSize, uint8_t const* tagVec,
 	size_t tagSize, char const* plaintextInputFilePath,
 	char const* ciphertextOutputFilePath);
-SG_FAULTCODE_T kk_nativesdk_fileGenerateHMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_fileGenerateHMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId,
 	char const* inputFilePath, OpaqueOutputPtr allocatedPtr,
 	AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_fileVerifyHMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_fileVerifyHMAC(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
 	char const* sessionToken, char const* keyId,
 	char const* inputFilePath, uint8_t const* tagVec, size_t tagSize,
 	OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_e2eeReencryptFromSessionKeyToPermanentKey(OpaqueConnectionHandlerPtr const connectionData,
+KK_FAULTCODE_T kk_nativesdk_e2eeReencryptFromSessionKeyToPermanentKey(OpaqueConnectionHandlerPtr const connectionData,
 	uint32_t slotId, char const* sessionToken, uint8_t const* serializedSourceRequest, size_t serializedSourceRequestSize,
     uint8_t const* serializedDestinationRequest, size_t serializedDestinationRequestSize, OpaqueOutputPtr allocatedPtr,
     AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_e2eeCompare(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
+KK_FAULTCODE_T kk_nativesdk_e2eeCompare(OpaqueConnectionHandlerPtr const connectionData, uint32_t slotId,
     char const* sessionToken, uint8_t const* serializedSourceRequest, size_t serializedSourceRequestSize,
     uint8_t const* serializedDestinationRequest, size_t serializedDestinationRequestSize, OpaqueOutputPtr allocatedPtr,
     AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_e2eeReencryptFromPermanentKeyToClientKey(OpaqueConnectionHandlerPtr const connectionData,
+KK_FAULTCODE_T kk_nativesdk_e2eeReencryptFromPermanentKeyToClientKey(OpaqueConnectionHandlerPtr const connectionData,
 	uint32_t slotId, char const* sessionToken, uint8_t const* serializedSourceRequest, size_t serializedSourceRequestSize,
     uint8_t const* serializedDestinationRequest, size_t serializedDestinationRequestSize, OpaqueOutputPtr allocatedPtr,
     AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_e2eeDecryptFromSessionKey(OpaqueConnectionHandlerPtr const connectionData,
+KK_FAULTCODE_T kk_nativesdk_e2eeDecryptFromSessionKey(OpaqueConnectionHandlerPtr const connectionData,
     uint32_t slotId, char const* sessionToken, char const* wrappingKeyId, char const* wrappedPrivateKey,
     char const* sessionKeyAlgo, char const* macAlgo, char const* oaepLabel, char const* metadata,
     char const** ciphertextVec, size_t ciphertextVecSize, OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
-SG_FAULTCODE_T kk_nativesdk_e2eeEncryptToClientKey(OpaqueConnectionHandlerPtr const connectionData,
+KK_FAULTCODE_T kk_nativesdk_e2eeEncryptToClientKey(OpaqueConnectionHandlerPtr const connectionData,
     uint32_t slotId, char const* sessionToken, uint8_t const* serializedSourceRequest,
     size_t serializedSourceRequestSize, uint8_t const* serializedDestinationRequest,
     size_t serializedDestinationRequestSize, OpaqueOutputPtr allocatedPtr, AssignerCallback callback);
